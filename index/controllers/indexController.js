@@ -18,6 +18,7 @@ var controller = {
 						response.end();
 					}
 
+					
 					response.write(data);
 					response.end();
 				
