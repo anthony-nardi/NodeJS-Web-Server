@@ -56,7 +56,8 @@ var conformRequest = function (request) {
 				'action'        : transformedUrl[2] || 'index',
 				'type'          : 'text/html',
 				'staticPath'    : staticPath,
-				'staticResource': staticResource
+				'staticResource': staticResource,
+				'app'           : true
 			
 			};
 
@@ -90,12 +91,13 @@ var conformRequest = function (request) {
 			config['controller'] = undefined;
 			config['action'] = undefined;
 			config['type'] = 'image/x-icon';
+			config['app'] = false;
 		}
 		return config;
 	}
-	
+
 	//If the request isn't for a static file, then it must be a controller...
-	config['path'] = './' + config['module'] + '/controllers/' + config['controller'] + 'Controller.js';
+	config['path'] = '/' + config['module'] + '/controllers/' + config['controller'] + 'Controller.js';
 
 	return config;
 
@@ -104,7 +106,7 @@ var conformRequest = function (request) {
 var conformJS = function (request, config) {
 		
 	if (config.staticPath) {
-		config['path']       = './' + config.staticPath[0] + '/skin/js/' + config.staticResource;
+		config['path']       = '/' + config.staticPath[0] + '/skin/js/' + config.staticResource;
 		config['module']     = config.staticPath[0];
 		config['controller'] = undefined;
 		config['action']     = undefined;
@@ -118,7 +120,7 @@ var conformJS = function (request, config) {
 var conformIMG = function (request, config) {
 		
 	if (config.staticPath) {
-		config['path']       = './' + config.staticPath[0] + '/skin/images/' + config.staticResource;
+		config['path']       = '/' + config.staticPath[0] + '/skin/images/' + config.staticResource;
 		config['module']     = config.staticPath[0];
 		config['controller'] = undefined;
 		config['action']     = undefined;
@@ -132,7 +134,7 @@ var conformIMG = function (request, config) {
 var conformCSS = function (request, config) {
 		
 	if (config.staticPath) {
-		config['path']       = './' + config.staticPath[0] + '/skin/css/' + config.staticResource;
+		config['path']       = '/' + config.staticPath[0] + '/skin/css/' + config.staticResource;
 		config['module']     = config.staticPath[0];
 		config['controller'] = undefined;
 		config['action']     = undefined;
@@ -152,17 +154,20 @@ var route = function (request, response) {
 	*/
 	
 	var map = conformRequest(request),
-			path = map['path'];
+			path = map['path'],
+			app  = map['app'],
+			searchPath = app ? './app' + path : path,
+			defaultPath = './base' + path;
 
-		fs.exists(path, function (exists) {
+		fs.exists(searchPath, function (exists) {
 		
 			if (exists) {
-				console.log('200: ' + path + ' exists');
+				console.log('200: ' + searchPath + ' exists');
 
 					response.writeHead(200, {'Content-Type': map['type']});
 					
 					if (!map['action']) {
-						fs.readFile(map['path'], function (err, data) {
+						fs.readFile(searchPath, function (err, data) {
 							if (err) {
 								response.write('Error');
 								console.log(err);
@@ -174,18 +179,43 @@ var route = function (request, response) {
 
 						});
 					} else {
-						require(path)[map['action']](request, response);
+						require(searchPath)[map['action']](request, response);
 					}
 					
 
 			} else {
-				//console.log(request)
-				//404
-				//console.log(map)
-				console.log('404: ' + path + ' does not exist')
-				response.writeHead(404, {'Content-Type':'text/plain'});
-				response.write('404 Not Found');
-				response.end();
+				console.log('404: ' + searchPath + ' does not exist...looking in ' + defaultPath)
+				fs.exists(defaultPath, function (exists) {
+
+					if (exists) {
+						console.log('200: ' + defaultPath + ' exists in base file');
+						response.writeHead(200, {'Content-Type': map['type']});
+					
+						if (!map['action']) {
+							fs.readFile(defaultPath, function (err, data) {
+								if (err) {
+									response.write('Error');
+									console.log(err);
+									response.end();
+								}
+
+								response.write(data);
+								response.end();
+
+							});
+						} else {
+							require(defaultPath)[map['action']](request, response);
+						}
+
+					} else {
+						console.log('404: ' + defaultPath + ' does not exist')
+						response.writeHead(404, {'Content-Type':'text/plain'});
+						response.write('404 Not Found');
+						response.end();
+					}
+
+				});
+
 			} 
 
 		});
