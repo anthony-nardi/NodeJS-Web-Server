@@ -157,7 +157,7 @@ var route = function (request, response) {
 			path = map['path'],
 			app  = map['app'],
 			searchPath = app ? './app' + path : path,
-			defaultPath = './base' + path;
+			defaultPath = './base/skin' + path.split('skin')[1];
 
 		fs.exists(searchPath, function (exists) {
 		
