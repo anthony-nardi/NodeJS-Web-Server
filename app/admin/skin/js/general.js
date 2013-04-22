@@ -1,3 +1,3 @@
 (function () {
-	console.log('THE ADMIN JS FILE');
+  console.log('THE ADMIN JS FILE');
 }())

@@ -1,3 +1,4 @@
+
 (function () {
-	console.log('THE INDEX JS FILE');
+  console.log('THE INDEX JS FILE');
 }())

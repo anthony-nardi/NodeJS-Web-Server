@@ -1,3 +1,3 @@
 (function () {
-	console.log('THE BASE JS FILE');
+  console.log('THE BASE JS FILE');
 }())
