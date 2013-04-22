@@ -1,10 +1,11 @@
-var fs = require('fs');
+var fs = require('fs'),
+    jade = require('jade');
 
 var controller = {
   
   'index': function (request, response) {
 
-    var template = __dirname + '\\..\\templates\\index.html';
+    var template = __dirname + '\\..\\templates\\index.jade';
     
     fs.exists(template, function (exists) {
     
@@ -18,8 +19,10 @@ var controller = {
             response.end();
           }
 
+          var fn = jade.compile(data, {});
+
           
-          response.write(data);
+          response.write(fn());
           response.end();
         
         });
