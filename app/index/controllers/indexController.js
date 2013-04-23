@@ -1,11 +1,13 @@
-var fs = require('fs'),
+var fs   = require('fs'),
+    path = require('path'),
     jade = require('jade');
 
 var controller = {
   
   'index': function (request, response) {
 
-    var template = __dirname + '\\..\\templates\\index.jade';
+    var template = path.normalize(__dirname + '/../templates/index.jade');
+    var includes = path.normalize(__dirname.split('app')[0] + 'base/templates/includes.jade');  
     
     fs.exists(template, function (exists) {
     
@@ -19,10 +21,11 @@ var controller = {
             response.end();
           }
 
-          var fn = jade.compile(data, {});
-
+          var fn = jade.compile(data, {
+            'filename': includes
+          });
           
-          response.write(fn());
+          response.write(fn({}));
           response.end();
         
         });
