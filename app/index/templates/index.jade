@@ -2,12 +2,10 @@
 html
   head
     title Anthony Nardi - Home
+    include js
+    script(src='../skin/js/general.js')
+    include css
   body
     #nav
-      ul
-        li: a(href='/home') Home
-        li: a(href='/blog') Blog
-        li: a(href='/demos') Demos
-        li: a(href='/about') About
-    include header
-    include footer
+      include nav
+    #content
