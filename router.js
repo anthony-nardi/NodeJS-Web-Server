@@ -39,11 +39,13 @@ var conformRequest = function (request) {
         var result = undefined;
         
         if (staticPath[staticPath.length - 1] === 'index') {
+          console.log(staticPath)
           staticPath.pop();
           result = url.split(staticPath.join('/') + '/').pop();
           staticPath.push('index');
           return result;
         } else {
+          console.log(staticPath)
           return url.split(staticPath.join('/') + '/').pop();
         }
       
