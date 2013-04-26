@@ -1,4 +1,8 @@
-body {background:#FFCC65;font-family: lucida console;}
+body {
+	background:#FFCC65;
+	font-family: lucida console;
+
+}
 #nav ul li {
 	float:left;
 	font-size:24px;
@@ -24,7 +28,7 @@ a:hover {
 	margin:0 auto;
 }
 #content {
-	width:960px;
+	width:60%;
 	margin:0 auto;
 	font-size:20px;
 	padding:16px;
