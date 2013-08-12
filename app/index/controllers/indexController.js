@@ -23,9 +23,7 @@ var controller = {
           console.log('BUUUUUTTTTTTT');
           console.log(includes);
           console.log(__dirname);
-          var fn = jade.compile(data, {
-            'filename': includes
-          });
+          var fn = jade.compile(data, {});
           
           response.write(fn({}));
           response.end();
