@@ -5,4 +5,4 @@ var requestListener = function (request, response) {
   router(request, response);
 }
 
-http.Server(requestListener).listen(8888);
+http.Server(requestListener).listen(process.env.PORT || 5000);
