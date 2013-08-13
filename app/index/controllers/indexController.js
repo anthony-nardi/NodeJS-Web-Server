@@ -7,7 +7,7 @@ var controller = {
   'index': function (request, response) {
 
     var template = path.normalize(__dirname + '/../templates/index.jade');
-    var includes = path.normalize(__dirname.split('app')[0] + 'base/templates/includes.jade');  
+    var includes = path.normalize('base/templates/includes.jade');  
     
     fs.exists(template, function (exists) {
     
@@ -23,7 +23,9 @@ var controller = {
           console.log('BUUUUUTTTTTTT');
           console.log(includes);
           console.log(__dirname);
-          var fn = jade.compile(data, {});
+          var fn = jade.compile(data, {
+            'filename': includes
+          });
           
           response.write(fn({}));
           response.end();
