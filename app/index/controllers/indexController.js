@@ -20,9 +20,7 @@ var controller = {
             console.log(err);
             response.end();
           }
-          console.log('BUUUUUTTTTTTT');
-          console.log(includes);
-          console.log(__dirname);
+
           var fn = jade.compile(data, {
             'filename': includes
           });
