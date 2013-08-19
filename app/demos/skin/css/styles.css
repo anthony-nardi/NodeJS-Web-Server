@@ -18,3 +18,7 @@ li.demoItem h1 {
 	padding-top:10px;
 	padding-bottom: 10px;
 }
+#instructions {
+	padding:20px;
+	font-size: 1.125em;
+}
