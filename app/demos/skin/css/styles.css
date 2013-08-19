@@ -22,3 +22,11 @@ li.demoItem h1 {
 	padding:20px;
 	font-size: 1.125em;
 }
+#myCanvas {
+	display: block;
+	margin: auto;
+}
+#container canvas {
+	display: block;
+	margin: auto;
+}

@@ -135,12 +135,12 @@ module.exports = (function () {
   	'move' : function (e, gameState) {
   		var myCanvas = document.getElementById('myCanvas');
   		var mousePos = this.locateMousePos(e);
-      if (mousePos.x > myCanvas.offsetLeft + 25 &&
-      	  mousePos.x < (myCanvas.offsetLeft) + (myCanvas.width + 25) &&
-      	  mousePos.y > myCanvas.offsetTop + 25 &&
-      	  mousePos.y < (myCanvas.offsetTop) + (myCanvas.height - 25) &&
+      if (mousePos.x > 25 &&
+      	  mousePos.x < (myCanvas.width + 25) &&
+      	  mousePos.y > 25 &&
+      	  mousePos.y < (myCanvas.height - 25) &&
       	  gameState.turn === 1) {
-      	var columnIndex = Math.floor((mousePos.x - myCanvas.offsetLeft - 75)/100);
+      	var columnIndex = Math.floor((mousePos.x - 25)/100);
       	for (var i = 5; i >= 0; i -= 1) {
       		if (gameState.gameBoard[i][columnIndex] === 0) {
       			gameState.gameBoard[i][columnIndex] = 1;
@@ -206,7 +206,7 @@ module.exports = (function () {
       for (var j = 0; j < 6; j += 1) {
       	for (var m = 0; m < 7; m += 1) {
       		if (this.gameBoard[j][m] === 0) {
-      			ctx.fillStyle = '#FFFFFF';
+      			ctx.fillStyle = '#ccc';
       		} else if (this.gameBoard[j][m] === 1) {
       			ctx.fillStyle = '#0000FF';
       		} else {
