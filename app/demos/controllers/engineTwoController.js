@@ -6,7 +6,7 @@ var controller = {
   
   'index': function (request, response) {
 
-    var template = path.normalize(__dirname + '/../templates/index.jade');
+    var template = path.normalize(__dirname + '/../templates/engineTwo.jade');
     var includes = path.normalize('base/templates/includes.jade');  
     
     fs.exists(template, function (exists) {

@@ -3,8 +3,6 @@ html
   head
     title Anthony Nardi - Demos
     include js
-    script(src='system/game.js')
-    script(src='general.js')
     link(rel='stylesheet', href='styles.css')
     include css
   body
@@ -12,8 +10,28 @@ html
       include nav
     #content
       #container
-      p
-        |  - Click and Drag the canvas
-        |  - Use the mousewheel to zoom in/out
-        |  - Use the arrow keys to fly the ship-car
-        |  - Press the space bar to shoot 
+        ul
+          li.demoItem
+            a(href='/demos/engineOne', title='Animation Engine 1'): h1 Animation Engine 1
+            a.imglink(href='/demos/engineOne', title='Animation Engine 1'): img(src='/ge1.png', width='200')
+            p Something something something...
+          li.demoItem
+            a(href='/demos/engineTwo', title='Animation Engine 2'): h1 Animation Engine 2
+            a.imglink(href='/demos/engineTwo', title='Animation Engine 2'): img(src='/ge2.png', width='200')
+            p Something something something...
+          li.demoItem
+            a(href='/demos/aStar', title='aStar'): h1 aStar
+            a.imglink(href='/demos/aStar', title='aStar'): img(src='/astar.png', width='200')
+            p Something something something...
+          li.demoItem
+            a(href='/demos/connectFour', title='Connect Four'): h1 Connect Four
+            a.imglink(href='/demos/connectFour', title='Connect Four'): img(src='/connect4.png', width='200')
+            p Something something something...
+          li.demoItem
+            a(href='/demos/explorer', title='Logiacl Explorer'): h1 Logical Explorer
+            a.imglink(href='/demos/explorer', title='Logiacl Explorer'): img(src='/explorer.png', width='200')
+            p Something something something...
+          li.demoItem
+            a(href='/demos/tron', title='Canvas Tron'): h1 Canvas Tron
+            a.imglink(href='/demos/tron', title='Canvas Tron'): img(src='/tron.png', width='200')
+            p Something something something...

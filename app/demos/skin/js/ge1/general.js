@@ -33,7 +33,7 @@ if (!Object.prototype.extend) {
 
 }
 
-moduleLoader(['components','entities','system'])(
+moduleLoader(['ge1/components','ge1/entities','ge1/system'])(
   ['extend','vector','ship','inputs', 'clock',
    'events','canvas', 'grid','viewport','movers', 'collision',
    'fps','mainView','unit','controller']

@@ -44,7 +44,7 @@ var conformRequest = function (request) {
           staticPath.push('index');
           return result;
         } else {
-          return url.split(staticPath.join('/') + '/').pop();
+          return url.split([staticPath[0]].join('/') + '/').pop();
         }
       
       }(staticPath)),
