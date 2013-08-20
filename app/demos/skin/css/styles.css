@@ -21,6 +21,7 @@ li.demoItem h1 {
 #instructions {
 	padding:20px;
 	font-size: 1.125em;
+	text-align: center;
 }
 #myCanvas {
 	display: block;
