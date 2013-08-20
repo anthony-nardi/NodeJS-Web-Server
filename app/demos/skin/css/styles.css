@@ -30,3 +30,6 @@ li.demoItem h1 {
 	display: block;
 	margin: auto;
 }
+li.demoItem p {
+	width:75%;	
+}

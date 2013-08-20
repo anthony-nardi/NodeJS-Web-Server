@@ -1,4 +1,4 @@
-moduleLoader.imports('movers', ['unit', 'mainView','collision', 'vector'], function (unit, mainView, collision, vector) {
+moduleLoader.imports('movers', ['unit', 'mainView', 'vector'], function (unit, mainView, vector) {
 
   var move = function (event) {
 
@@ -84,7 +84,7 @@ moduleLoader.imports('movers', ['unit', 'mainView','collision', 'vector'], funct
    
   var dm = 0;
   
-  for (var i = 0; i < 1000; i += 1) {
+  for (var i = 0; i < 500; i += 1) {
   
     dm = Math.getRandomInt(15, 50);
 
@@ -145,10 +145,6 @@ moduleLoader.imports('movers', ['unit', 'mainView','collision', 'vector'], funct
         );
       }
   
-    });
-    
-    collision.collides.call(mover, function () {
-      //console.log('Mover hit!')
     });
 
     mainView.place(mover);

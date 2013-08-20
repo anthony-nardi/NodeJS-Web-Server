@@ -8,7 +8,7 @@ if (document.addEventListener) {
 			
 			var navItems = document.getElementsByClassName('navItem'),
 					navList  = document.getElementById('navList'),
-					totalWidth = 0;
+					totalWidth = 20;
 			
 			for (var i = 0; i < navItems.length; i += 1) {
 				totalWidth += navItems[i].offsetWidth;

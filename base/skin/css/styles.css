@@ -35,3 +35,6 @@ a:hover {
 	padding-top:32px;
 	line-height: 40px;
 }
+.inline {
+	display: inline !important; 
+}
