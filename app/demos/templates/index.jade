@@ -31,7 +31,7 @@ html
               | module loading dependency injector called 
               a(href='https://github.com/substack/node-browserify', title='Browserify', target='_blank', class='inline') browserify
               | . This amazing tool
-              | uses Node's require mechanism to organize code for the browser.  Another improvement was the implementation
+              | uses Node's require mechanism to organize code for the browser.  Another improvement is the implementation
               | of a 
               a(href='http://en.wikipedia.org/wiki/Quadtree', title='QuadTree', target='_blank', class='inline') QuadTree
               | , which is another way to spatially index objects on a map.  Depending on how it's
@@ -39,25 +39,35 @@ html
           li.demoItem
             a(href='/demos/aStar', title='aStar'): h1 aStar
             a.imglink(href='/demos/aStar', title='aStar'): img(src='/astar.png', width='250')
-            p This is a pathfinder that uses the A* algorithm to find the shortest distance between two points.
+            p This is a pathfinder that uses the 
+              a(href='http://en.wikipedia.org/wiki/A*_search_algorithm', title='aStar', target='_blank', class='inline') A* algorithm
+              |  to find the shortest distance between two points.
+              | This is another collaborative effort.  View the full source code
+              a(href='https://github.com/jakedean/aStarPathfinder', title='aStar', target='_blank', class='inline')  here.
           li.demoItem
             a(href='/demos/connectFour', title='Connect Four'): h1 Connect Four
             a.imglink(href='/demos/connectFour', title='Connect Four'): img(src='/connect4.png', width='250')
-            p This is a Connect Four AI that uses the minimax algorithm.  Try to beat the computer!
+            p This is a Connect Four AI that uses the 
+              a(href='http://en.wikipedia.org/wiki/Minimax', title='Minimax', target='_blank', class='inline') minimax algorithm.  
+              |  Try to beat the computer!
+              | This is another collaborative effort.  View the full source code
+              a(href='https://github.com/jakedean/connectFourAI', title='aStar', target='_blank', class='inline')  here.
           li.demoItem
             a(href='/demos/explorer', title='Logiacl Explorer'): h1 Logical Explorer
             a.imglink(href='/demos/explorer', title='Logiacl Explorer'): img(src='/explorer.png', width='250')
-            p This is a program that is a proof of concept for how an explorer robot might build a representation of space. 
-              |  The objective is for the robot (pink tile) to collect the gold (gold tile) and return to a ladder 
+            p This is a program that is a proof of concept for how an exploration robot might build a representation of space. 
+              |  The objective is for the robot (pink tile) to collect the gold (gold tile) and return to the ladder 
               |  (brown tile), while avoiding monsters (green tiles) and pits (red tiles).  The robot has no 
               |  information about the size of the map, number of pits or monsters, or the location of anything.
-              |  The robots models the space it explores based on senses the occupied tiles emit to adjacent tiles. 
+              |  Occupied tiles emit information to adjacent tiles, which the robot uses to model the space it explores. 
               |  The robot only moves to tiles it concludes are safe. If it runs out of safe tiles to explore, 
               |  it will use its three arrows to kill monsters to open up new territory.  The game is over 
-              |  when the robot completes the objective or runs out of safe tiles to explore and has no arrows to shoot.
+              |  when the robot completes the objective or runs out of arrows and safe tiles to explore.
               |  View the full source code
               a(href='https://github.com/anthony-nardi/LogicalExplorer', title='Logical Explorer', target='_blank', class='inline')  here.
           li.demoItem
             a(href='/demos/tron', title='Canvas Tron'): h1 Canvas Tron
             a.imglink(href='/demos/tron', title='Canvas Tron'): img(src='/tron.png', width='250')
-            p Classic multiplayer Tron.
+            p Classic multiplayer Tron.  This is another collaborative effort.
+              |  View the full source code
+              a(href='https://github.com/RaymondDay/nodeTron?source=c', title='Tron', target='_blank', class='inline')  here.
