@@ -38,8 +38,3 @@ moduleLoader(['ge1/components','ge1/entities','ge1/system'])(
    'events','canvas', 'grid','viewport','movers', 'collision',
    'fps','mainView','unit','controller']
 );
-
-if (document.getElementById('viewport')) {
-  document.getElementById('viewport').width = document.getElementById('container').offsetWidth;
-  document.getElementById('viewport').height = document.getElementById('container').offsetHeight;
-}
