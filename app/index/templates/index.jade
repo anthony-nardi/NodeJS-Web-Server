@@ -2,10 +2,28 @@
 html
   head
     title Anthony Nardi - Home
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     include js
     script(src='general.js')
     include css
   body
-    #nav
-      include nav
-    #content
+    header(id='nav')
+      #nav-container.container-fluid
+        include nav
+    main
+      #content.container
+        p My name is Tony.
+          |  I work as a full-time Javascript Engineer in Cambridge, MA,
+          |  building an awesome product with great people.  I love learning,
+          |  creating, science, art, and nature.  My morning commute consists
+          |  of walking an hour, which clears my mind, allowing me to
+          |  organize my thoughts and focus on things I care about.
+        br
+        p I have created and maintained websites built on top of completely
+          |  custom .Net frameworks, the open source ecommerce platform Magento,
+          |  and my own Node.js MVC framework from which these pages are served.
+          |  Some notable accomplishments of mine that I am proud of include
+          |  building a natively running mobile application for UMass Dining
+          |  Services, implementing shipping and routing logic for a retail
+          |  furniture chain, and all of the projects on this website!
+    footer
