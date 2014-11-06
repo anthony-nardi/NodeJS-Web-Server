@@ -14,7 +14,7 @@ var controller = {
 
     request.on('end', function () {
       response.writeHead(200, {'Content-Type': 'text/xml'});
-      response.end('<Response><Message>' + postData + '</Message></Response>');
+      response.end('<Response><Message>Oh yeah baybay!</Message></Response>');
     });
 
   }
