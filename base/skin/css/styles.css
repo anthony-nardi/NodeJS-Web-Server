@@ -1,34 +1,50 @@
 body {
-	background:#FFCC65;
+	background:#FFCC65 !important;
 	font-family: lucida console;
 
 }
-#nav ul li {
-	float:left;
-	font-size:24px;
-	padding:16px;
-	padding-top:20px;
-}
+
 a, a:link, a:visited, a:active  {
 	text-decoration: none;
 	color:#66FFFF;
 }
+
 a:hover {
 	text-decoration: underline;
 }
 
-#nav {
+#nav-container {
 	width:100%;
-	height:60px;
 	background:#6666FF;
 	margin:0 auto;
 	border-bottom: 1px solid #66FFFF;
+  display:table;
 }
-#nav ul {
-	margin:0 auto;
+#nav-container ul {
+  display:table-row;
+  text-align: center;
+  list-style: none;
+  font-weight: bold;
 }
+
+#nav-container ul li {
+  display:table-cell;
+  width:33%;
+}
+
+#nav-container ul li a {
+  display:block;
+  font-size:24px;
+  padding: 10px
+}
+
+#nav-container ul li a:hover, #nav-container ul li a:focus {
+  background-color: #444;
+  color: #66FFFF;
+}
+
 #content {
-	width:60%;
+	width:85%;
 	margin:0 auto;
 	font-size:20px;
 	padding:16px;
