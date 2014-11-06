@@ -1,6 +1,7 @@
 'use strict';
 
-var fs   = require('fs');
+var fs          = require('fs'),
+    querystring = require('querystring');
 
 var controller = {
 
@@ -13,8 +14,18 @@ var controller = {
     });
 
     request.on('end', function () {
+      var smsPost = querystring.parse(postData),
+          smsResponse = (function () {
+            var result = '';
+            for (var prop in smsPost) {
+              if (smsPost.hasOwnProperty(prop)) {
+                result += prop + ': ' + smsPost[prop] + '\n\n';
+              }
+            }
+            return result;
+          })();
       response.writeHead(200, {'Content-Type': 'text/xml'});
-      response.end('<Response><Message>Oh yeah baybay!</Message></Response>');
+      response.end('<Response><Message>' + smsResponse + '</Message></Response>');
     });
 
   }
