@@ -13,9 +13,8 @@ var controller = {
     });
 
     request.on('end', function () {
-      fs.writeFile('message.txt', postData, function (err) {
-        if (err) throw err;
-      });
+      response.writeHead(200, {'Content-Type': 'text/xml'});
+      response.end(postData);
     });
 
   }
