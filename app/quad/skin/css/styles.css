@@ -1,0 +1,56 @@
+body * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #main {
+        float: left;
+        margin: 10px;
+      }
+
+      #sidebar {
+        float: left;
+        height: 200px;
+        width: 400px;
+      }
+
+      #start-fight {
+        /*   position: absolute;
+           top: 10px;
+           left: 50px;*/
+      }
+
+      #game-area {
+        border: 10px solid black;
+        height: 300px;
+        width: 600px;
+        margin: 10px 0;
+      }
+
+      #food {
+        visibility: hidden;
+        height: 20px;
+        width: 20px;
+        background-color: red;
+      }
+
+      #snake {
+        visibility: hidden;
+        height: 20px;
+        width: 20px;
+        background-color: yellow;
+      }
+
+      #total-score {
+        display: none;
+        font-weight: bold;
+        margin-left: 30px;
+        margin-top: 20px;
+        width: 150px;
+      }
+
+      #content {
+        width: auto;
+        height: auto;
+        margin: 0 !important;
+      }

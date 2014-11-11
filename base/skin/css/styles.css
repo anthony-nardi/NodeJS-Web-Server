@@ -32,7 +32,7 @@ a:hover {
   width:33%;
 }
 
-#nav-container ul li a {
+#nav-container ul li a {  
   display:block;
   font-size:24px;
   padding: 10px
@@ -45,6 +45,7 @@ a:hover {
 
 #content {
 	width:85%;
+  max-width: 50ch;
 	margin:0 auto;
 	font-size:20px;
 	padding:16px;
