@@ -1,22 +1,16 @@
 {
-  "name"        : "NodeJS-Web-Server",
-
-  "description" : "Anthony Nardi Website",
-
-  "author"      : "Anthony Nardi",
-
-  "version"     : "0.0.1",
-
+  "name": "NodeJS-Web-Server",
+  "description": "Anthony Nardi Website",
+  "author": "Anthony Nardi",
+  "version": "0.0.1",
   "dependencies": {
-    "socket.io" : "1.0.6",
+    "socket.io": "1.0.6",
     "browserify": "5.9.1",
-    "pg"        : "3.x",
-    "jade"      : "0.34.1"
-
+    "pg": "3.x",
+    "jade": "0.34.1",
+    "less": "~2.0.0"
   },
-
-  "engine" : "node 0.10.29",
-
+  "engine": "node 0.10.29",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",

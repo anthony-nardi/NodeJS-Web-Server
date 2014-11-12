@@ -1,0 +1,62 @@
+@baseBlue: #6666FF;
+@ltBlue: #b8b8ff;
+@baseYellow: #ffd24b;
+@baseOrange: #ffb24b;
+
+body {
+  background: @baseYellow !important;
+  font-family: lucida console;
+}
+/*7E58FF E85050*/
+
+a, a:link, a:visited, a:active  {
+  text-decoration: none;
+  color:@ltBlue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#nav-container {
+  width:100%;
+  background:@baseBlue;
+  margin:0 auto;
+  border-bottom: 1px solid @ltBlue;
+  display:table;
+}
+#nav-container ul {
+  display:table-row;
+  text-align: center;
+  list-style: none;
+  font-weight: bold;
+}
+
+#nav-container ul li {
+  display:table-cell;
+  width:33%;
+}
+
+#nav-container ul li a {
+  display:block;
+  font-size:24px;
+  padding: 10px
+}
+
+#nav-container ul li a:hover, #nav-container ul li a:focus {
+  background-color: @ltBlue;
+  color: #baseBlue;
+}
+
+#content {
+  width:85%;
+  max-width: 50ch;
+  margin:0 auto;
+  font-size:20px;
+  padding:16px;
+  padding-top:32px;
+  line-height: 40px;
+}
+.inline {
+  display: inline !important;
+}
