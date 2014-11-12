@@ -1,4 +1,48 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+module.exports = (function () {
+
+  var canvas   = document.createElement('canvas'),
+      ctx      = canvas.getContext('2d'),
+      toResize = true;
+
+  function resize () {
+    if (toResize) {
+      console.log('Resizing canvas.');
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      toResize      = false;
+    }
+  }
+
+  function setToResize () {
+    console.log('Window resizing.');
+    toResize = true;
+  }
+
+  function init () {
+    window.document.body.appendChild(canvas);
+    window.document.body.style.margin = '0px';
+    window.document.body.style.overflow = 'hidden';
+
+    canvas.ctx = ctx;
+
+    resize();
+
+    window.addEventListener('resize', setToResize, false);
+  }
+
+  return {
+    'canvas' : canvas,
+    'ctx'    : ctx,
+    'resize' : resize,
+    'init'   : init
+  };
+
+}());
+
+},{}],2:[function(require,module,exports){
 var display = require('./display');
 
 window.onload = function () {
@@ -52,7 +96,7 @@ window.onload = function () {
       if (86 < i < 171)  midSum  += frequencyData[i];
       if (171 < i < 256) highSum += frequencyData[i];
 
-    	display.ctx.fillRect(display.canvas.height - frequencyData[i], width * i, width, frequencyData[i]);
+    	display.ctx.fillRect(width * i, display.canvas.height - frequencyData[i], width, frequencyData[i]);
 
     }
 
@@ -80,48 +124,4 @@ window.onload = function () {
   renderFrame();
 
 };
-},{"./display":2}],2:[function(require,module,exports){
-'use strict';
-
-module.exports = (function () {
-
-  var canvas   = document.createElement('canvas'),
-      ctx      = canvas.getContext('2d'),
-      toResize = true;
-
-  function resize () {
-    if (toResize) {
-      console.log('Resizing canvas.');
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-      toResize      = false;
-    }
-  }
-
-  function setToResize () {
-    console.log('Window resizing.');
-    toResize = true;
-  }
-
-  function init () {
-    window.document.body.appendChild(canvas);
-    window.document.body.style.margin = '0px';
-    window.document.body.style.overflow = 'hidden';
-
-    canvas.ctx = ctx;
-
-    resize();
-
-    window.addEventListener('resize', setToResize, false);
-  }
-
-  return {
-    'canvas' : canvas,
-    'ctx'    : ctx,
-    'resize' : resize,
-    'init'   : init
-  };
-
-}());
-
-},{}]},{},[1]);
+},{"./display":1}]},{},[2]);

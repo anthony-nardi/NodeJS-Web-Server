@@ -51,7 +51,7 @@ window.onload = function () {
       if (86 < i < 171)  midSum  += frequencyData[i];
       if (171 < i < 256) highSum += frequencyData[i];
 
-    	display.ctx.fillRect(display.canvas.height - frequencyData[i], width * i, width, frequencyData[i]);
+    	display.ctx.fillRect(width * i, display.canvas.height - frequencyData[i], width, frequencyData[i]);
 
     }
 
