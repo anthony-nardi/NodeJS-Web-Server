@@ -28,9 +28,9 @@ a:hover {
 }
 #nav-container {
   width: 100%;
-  background: #4a3510;
+  background: #4A5664;
   margin: 0 auto;
-  border-bottom: 1px solid #150d00;
+  border-bottom: 1px solid #6698C8;
   display: table;
 }
 #nav-container ul {
@@ -50,8 +50,8 @@ a:hover {
 }
 #nav-container ul li a:hover,
 #nav-container ul li a:focus {
-  background-color: #150d00;
-  color: #baseBlue;
+  background-color: #6698C8;
+  color: #fff;
 }
 #content {
   width: 85%;
