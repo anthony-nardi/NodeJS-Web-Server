@@ -6,68 +6,74 @@ html
     link(rel='stylesheet', href='styles.css')
     include css
   body
-    #nav
-      include nav
-    #content
-      #container
-        ul
-          li.demoItem
+    header
+      #nav-container.container-fluid
+        include nav
+    main.demos
+      #content.container
+        div.row
+          div.col-md-12.col-xs-12
             a(href='/demos/engineOne', title='Animation Engine 1'): h1 Animation Engine 1
             a.imglink(href='/demos/engineOne', title='Animation Engine 1'): img(src='/ge1.png', width='250')
-            p This is my first game engine that I built.
-              |  I am using my 
+            p.desc This is my first game engine that I built.
+              |  I am using my
               a(href='https://github.com/anthony-nardi/Module-Loader', title='Module Loader', target='_blank', class='inline') module loading dependency injector
               |  to manage and organize components of the entire program.
               |  The movements of the colorful squares, ship, and bullets utilize vector math.
               |  I also use a tile map to spatially index all of the objects on the map.
-              |  View the full source code 
+              |  View the full source code
               a(href='https://github.com/anthony-nardi/Entity-Component-Game-Engine', title='Game Engine', target='_blank', class='inline') here.
-          li.demoItem
+        div.row
+          div.col-md-12.col-xs-12
             a(href='/demos/engineTwo', title='Animation Engine 2'): h1 Animation Engine 2
             a.imglink(href='/demos/engineTwo', title='Animation Engine 2'): img(src='/ge2.png', width='250')
-            p This is an animation engine that is the result of a collaborative effort between my friends and I.
+            p.desc This is an animation engine that is the result of a collaborative effort between my friends and I.
               | There are a few major improvements over my first game engine.  One of them is that we use
-              a(href='https://github.com/substack', title='James Halliday', target='_blank', class='inline')  Substack's 
-              | module loading dependency injector called 
+              a(href='https://github.com/substack', title='James Halliday', target='_blank', class='inline')  Substack's
+              | module loading dependency injector called
               a(href='https://github.com/substack/node-browserify', title='Browserify', target='_blank', class='inline') browserify
               | . This amazing tool
               | uses Node's require mechanism to organize code for the browser.  Another improvement is the implementation
-              | of a 
+              | of a
               a(href='http://en.wikipedia.org/wiki/Quadtree', title='QuadTree', target='_blank', class='inline') QuadTree
               | , which is another way to spatially index objects on a map.  Depending on how it's
-              | used, it can be substantially more efficient than tile maps.   
-          li.demoItem
+              | used, it can be substantially more efficient than tile maps.
+        div.row
+          div.col-md-12.col-xs-12
             a(href='/demos/aStar', title='aStar'): h1 aStar
             a.imglink(href='/demos/aStar', title='aStar'): img(src='/astar.png', width='250')
-            p This is a pathfinder that uses the 
+            p.desc This is a pathfinder that uses the
               a(href='http://en.wikipedia.org/wiki/A*_search_algorithm', title='aStar', target='_blank', class='inline') A* algorithm
               |  to find the shortest distance between two points.
               | This is another collaborative effort.  View the full source code
               a(href='https://github.com/jakedean/aStarPathfinder', title='aStar', target='_blank', class='inline')  here.
-          li.demoItem
+        div.row
+          div.col-md-12.col-xs-12
             a(href='/demos/connectFour', title='Connect Four'): h1 Connect Four
             a.imglink(href='/demos/connectFour', title='Connect Four'): img(src='/connect4.png', width='250')
-            p This is a Connect Four AI that uses the 
-              a(href='http://en.wikipedia.org/wiki/Minimax', title='Minimax', target='_blank', class='inline') minimax algorithm.  
+            p.desc This is a Connect Four AI that uses the
+              a(href='http://en.wikipedia.org/wiki/Minimax', title='Minimax', target='_blank', class='inline') minimax algorithm.
               |  Try to beat the computer!
               | This is another collaborative effort.  View the full source code
               a(href='https://github.com/jakedean/connectFourAI', title='aStar', target='_blank', class='inline')  here.
-          li.demoItem
+        div.row
+          div.col-md-12.col-xs-12
             a(href='/demos/explorer', title='Logiacl Explorer'): h1 Logical Explorer
             a.imglink(href='/demos/explorer', title='Logiacl Explorer'): img(src='/explorer.png', width='250')
-            p This is a program that is a proof of concept for how an exploration robot might build a representation of space. 
-              |  The objective is for the robot (pink tile) to collect the gold (gold tile) and return to the ladder 
-              |  (brown tile), while avoiding monsters (green tiles) and pits (red tiles).  The robot has no 
+            p.desc This is a program that is a proof of concept for how an exploration robot might build a representation of space.
+              |  The objective is for the robot (pink tile) to collect the gold (gold tile) and return to the ladder
+              |  (brown tile), while avoiding monsters (green tiles) and pits (red tiles).  The robot has no
               |  information about the size of the map, number of pits or monsters, or the location of anything.
-              |  Occupied tiles emit information to adjacent tiles, which the robot uses to model the space it explores. 
-              |  The robot only moves to tiles it concludes are safe. If it runs out of safe tiles to explore, 
-              |  it will use its three arrows to kill monsters to open up new territory.  The game is over 
+              |  Occupied tiles emit information to adjacent tiles, which the robot uses to model the space it explores.
+              |  The robot only moves to tiles it concludes are safe. If it runs out of safe tiles to explore,
+              |  it will use its three arrows to kill monsters to open up new territory.  The game is over
               |  when the robot completes the objective or runs out of arrows and safe tiles to explore.
               |  View the full source code
               a(href='https://github.com/anthony-nardi/LogicalExplorer', title='Logical Explorer', target='_blank', class='inline')  here.
-          li.demoItem
+        div.row
+          div.col-md-12.col-xs-12
             a(href='/demos/tron', title='Canvas Tron'): h1 Canvas Tron
             a.imglink(href='/demos/tron', title='Canvas Tron'): img(src='/tron.png', width='250')
-            p Classic multiplayer Tron.  This is another collaborative effort.
+            p.desc Classic multiplayer Tron.  This is another collaborative effort.
               |  View the full source code
               a(href='https://github.com/RaymondDay/nodeTron?source=c', title='Tron', target='_blank', class='inline')  here.
