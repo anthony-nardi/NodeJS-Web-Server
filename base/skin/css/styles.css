@@ -79,3 +79,11 @@ main.demos .desc {
 div#content a {
   color:#6698C8;
 }
+
+main.logs #content {
+  max-width: none;
+}
+
+main.logs .row {
+  border-bottom: 1px solid #6698C8;
+}
