@@ -75,3 +75,7 @@ main.demos .row {
 main.demos .desc {
   padding-top:10px;
 }
+
+div#content a {
+  color:#2a6496;
+}
