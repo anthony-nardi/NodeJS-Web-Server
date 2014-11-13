@@ -87,3 +87,11 @@ main.logs #content {
 main.logs .row {
   border-bottom: 1px solid #6698C8;
 }
+
+.centerText {
+  text-align: center;
+}
+
+.lrgText {
+  font-size: 115%;
+}
