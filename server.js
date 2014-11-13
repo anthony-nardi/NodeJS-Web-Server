@@ -15,43 +15,73 @@ var PORT    = 5000,
 
     loggingClient;
 
-    pg.connect('postgres://anardi:password@localhost', function(err, client) {
 
-      if (err) console.log('ERROR CONNECTING TO POSTGRES', err);
 
-      loggingClient = client;
 
+pg.connect('postgres://anardi:password@localhost', function(err, client) {
+
+  if (err) {
+    console.log('ERROR CONNECTING TO POSTGRES', err);
+    return;
+  }
+
+  loggingClient = client;
+
+  createTables();
+
+});
+
+function logger (moduleId, orig_message, nice_message) {
+
+  var table = 'log',
+      query;
+
+  if (!loggingClient) {
+    console.log('WARN: Could not use database.');
+    console.log(orig_message);
+    console.log(nice_message);
+  } else {
+
+    /*
+      'INSERT INTO log VALUES (0, \'original message\', \'nice message\', \'788741233\')'
+    */
+
+    query = 'INSERT INTO ' + table +
+            ' VALUES (' + moduleId + ', \'' +
+                          orig_message + '\', \'' +
+                          nice_message + '\', \'' +
+                          Date.now() + '\')';
+
+    loggingClient.query(query, function (err, result) {
+      if (err) console.log(err);
+      if (result) console.log(result);
     });
 
-    function logger (moduleId, orig_message, nice_message) {
+  }
 
-      var table = 'log',
-          query;
+}
 
-      if (!loggingClient) {
-        console.log('WARN: Could not use database.');
-        console.log(orig_message);
-        console.log(nice_message);
-      } else {
+function createLogTable () {
+  var query = 'CREATE TABLE IF NOT EXISTS log ( moduleId integer NOT NULL, orig_message text, nice_message text, date integer )';
+  loggingClient.query(query, function (err, result) {
+    if (err) console.log('ERR: ', err);
+    if (result) console.log('RES: ', result);
+  });
+}
 
-        /*
-          'INSERT INTO log VALUES (0, \'original message\', \'nice message\', \'788741233\')'
-        */
+function createModulesTable () {
+  var query = 'CREATE TABLE IF NOT EXISTS modules ( moduleId integer NOT NULL, moduleName varchar(40) NOT NULL )';
+  loggingClient.query(query, function (err, result) {
+    if (err) console.log('ERR: ', err);
+    if (result) console.log('RES: ', result);
+  });
+}
 
-        query = 'INSERT INTO ' + table +
-                ' VALUES (' + moduleId + ', \'' +
-                              orig_message + '\', \'' +
-                              nice_message + '\', \'' +
-                              Date.now() + '\')';
+function createTables () {
+  createLogTable();
+  createModulesTable();
+}
 
-        loggingClient.query(query, function (err, result) {
-          if (err) console.log(err);
-          if (result) console.log(result);
-        });
-
-      }
-
-    }
 
 function requestListener (request, response) {
 
