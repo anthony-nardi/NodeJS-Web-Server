@@ -11,11 +11,10 @@
 */
 function route (request, response) {
 
-  var map  = normalizeRequest(request),
-      path = map.path,
-      app  = map.app,
-      logger = response.logger,
-
+  var map         = normalizeRequest(request),
+      path        = map.path,
+      app         = map.app,
+      logger      = response.logger,
       searchPath  = app ? './app' + path : path,
       defaultPath = './base/skin' + path.split('skin')[1];
 
@@ -24,33 +23,24 @@ function route (request, response) {
 
   fs.exists(searchPath, function (exists) {
 
+    // Is the requested resource within the app/ directory?
     if (exists) {
 
       console.log('200: ' + searchPath);
 
-      response.writeHead(200, {'Content-Type': map.type });
+      response.writeHead(200, { 'Content-Type': map.type });
 
-        if (!map.action) {
+      if (!map.action) {
 
-          fs.readFile(searchPath, function (err, data) {
+        serveStaticeResource(searchPath, response);
 
-            if (err) {
+      } else {
 
-              response.write('Error');
-              console.log(err);
-              response.end();
+        require(searchPath)[map.action](request, response, logger);
 
-            }
+      }
 
-            response.write(data);
-            response.end();
-
-          });
-        } else {
-          require(searchPath)[map.action](request, response, logger);
-        }
-
-
+    // Is the requested resource within the base/ directory?
     } else {
 
       console.log('404: ' + searchPath + ' SEARCH ' + defaultPath);
@@ -60,37 +50,54 @@ function route (request, response) {
         if (exists) {
 
           console.log('200: ' + defaultPath);
+
           response.writeHead(200, {'Content-Type': map.type});
 
           if (!map.action) {
 
-            fs.readFile(defaultPath, function (err, data) {
+            serveStaticeResource(defaultPath, response);
 
-              if (err) {
-
-                response.write('Error');
-                console.log(err);
-                response.end();
-
-              }
-
-              response.write(data);
-              response.end();
-
-            });
           } else {
+
             require(defaultPath)[map.action](request, response, logger);
+
           }
 
+        // The requested resource is not in the app/ or base/ directory, so it is a 404.
         } else {
+
           console.log('404: ' + defaultPath);
+
+          logger('core', JSON.stringify(map), '404: ' + defaultPath);
+
           response.writeHead(404, {'Content-Type':'text/html'});
+
           require('./base/controllers/404')[map.action](request, response, logger);
+
         }
 
       });
 
     }
+
+  });
+
+}
+
+function serveStaticeResource (path, response) {
+
+  fs.readFile(path, function (err, data) {
+
+    if (err) {
+
+      response.write('Error');
+      console.log(err);
+      response.end();
+
+    }
+
+    response.write(data);
+    response.end();
 
   });
 

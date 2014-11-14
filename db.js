@@ -35,6 +35,8 @@ function logger (moduleName, orig_message, nice_message) {
       'INSERT INTO log VALUES (0, \'original message\', \'nice message\', \'788741233\')'
     */
 
+    console.log('LOGGING TO DB!!!!');
+
     query = 'INSERT INTO ' + table +
             ' VALUES (' + moduleId + ', \'' +
                           orig_message + '\', \'' +
@@ -51,7 +53,7 @@ function logger (moduleName, orig_message, nice_message) {
 }
 
 function createLogTable () {
-  var query = 'CREATE TABLE IF NOT EXISTS log ( moduleId integer NOT NULL, orig_message text, nice_message text, date integer )';
+  var query = 'CREATE TABLE IF NOT EXISTS log ( moduleId integer NOT NULL, orig_message text, nice_message text, date bigint )';
   persistentClient.query(query, function (err, result) {
     if (err)    console.log('ERR: ', err);
     if (result) console.log('RES: ', result);
