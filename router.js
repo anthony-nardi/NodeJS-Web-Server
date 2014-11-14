@@ -92,6 +92,7 @@ function serveStaticeResource (path, response) {
 
       response.write('Error');
       console.log(err);
+      logger('core', err, 'Error serving static resource: ' + path);
       response.end();
 
     }
