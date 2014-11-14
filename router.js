@@ -84,9 +84,8 @@ function route (request, response) {
 
         } else {
           console.log('404: ' + defaultPath);
-          response.writeHead(404, {'Content-Type':'text/plain'});
-          response.write('404 Not Found');
-          response.end();
+          response.writeHead(404, {'Content-Type':'text/html'});
+          require('./base/controllers/404')[map.action](request, response, logger);
         }
 
       });
