@@ -95,3 +95,7 @@ main.logs .row {
 .lrgText {
   font-size: 115%;
 }
+
+.hidden {
+  visibility: hidden;
+}
