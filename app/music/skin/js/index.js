@@ -1,19 +1,31 @@
+'use strict';
 var display = require('./display');
 
 window.onload = function () {
 
 	var audioElement = document.createElement('audio'),
 			ctx 				 = new AudioContext(),
-			audioSrc 		 = ctx.createMediaElementSource(audioElement);
+			audioSrc 		 = ctx.createMediaElementSource(audioElement),
 			analyser 		 = ctx.createAnalyser(),
-			gainNode     = ctx.createGain();
+			gainNode     = ctx.createGain(),
+      src;
 
   // we have to connect the MediaElementSource with the analyser
   audioSrc.connect(analyser);
 	audioSrc.connect(gainNode);
 	gainNode.connect(ctx.destination);
 
- 	audioElement.src = '/app/music/sevenlions.mp3';
+  if (!!audioElement.canPlayType('audio/mpeg')) {
+    src = '/app/music/sevenlions.mp3';
+  } else if (!!audioElement.canPlayType('audio/ogg')) {
+    src = '/app/music/sevenlions.ogg';
+  } else {
+    alert('Browser does not support .mp3 or .ogg');
+    return;
+  }
+
+
+ 	audioElement.src = src;
 
 	document.body.appendChild(audioElement);
 

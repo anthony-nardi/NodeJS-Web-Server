@@ -118,6 +118,10 @@ function normalizeRequest (request) {
     return normalizeMP3(request, config);
   }
 
+  if (url.indexOf('.ogg') !== -1) {
+    return normalizeOGG(request, config);
+  }
+
   if (url.indexOf('.ico') !== -1) {
 
     if (staticPath) {
@@ -193,6 +197,21 @@ function normalizeMP3 (request, config) {
   return config;
 
 }
+
+function normalizeOGG (request, config) {
+
+  if (config.staticPath) {
+    config.path       = '/' + config.staticPath[0] + '/skin/audio/' + config.staticResource;
+    config.module     = config.staticPath[0];
+    config.controller = undefined;
+    config.action     = undefined;
+    config.type       = 'audio/ogg';
+  }
+
+  return config;
+
+}
+
 
 module.exports = function (request) {
   return normalizeRequest(request);
