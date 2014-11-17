@@ -3,7 +3,9 @@
 var fs   = require('fs'),
     path = require('path'),
     jade = require('jade'),
-    pg   = require('pg');
+    pg   = require('pg'),
+
+    connectionString = process.env.DATABASE_URL || 'postgres://anardi:password@localhost';
 
 var controller = {
 
@@ -12,7 +14,7 @@ var controller = {
     var template = path.normalize(__dirname + '/../templates/index.jade');
     var includes = path.normalize('base/templates/includes.jade');
 
-    pg.connect('postgres://anardi:password@localhost', function(err, client) {
+    pg.connect(connectionString, function(err, client) {
 
       if (err) console.log('ERROR CONNECTING TO POSTGRES', err);
 
