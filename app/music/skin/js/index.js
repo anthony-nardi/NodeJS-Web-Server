@@ -15,10 +15,10 @@ window.onload = function () {
 	audioSrc.connect(gainNode);
 	gainNode.connect(ctx.destination);
 
-  if (!!audioElement.canPlayType('audio/mpeg')) {
-    src = '/app/music/sevenlions.mp3';
-  } else if (!!audioElement.canPlayType('audio/ogg')) {
+  if (!!audioElement.canPlayType('audio/ogg')) {
     src = '/app/music/sevenlions.ogg';
+  } else if (!!audioElement.canPlayType('audio/mpeg')) {
+    src = '/app/music/sevenlions.mp3';
   } else {
     alert('Browser does not support .mp3 or .ogg');
     return;
