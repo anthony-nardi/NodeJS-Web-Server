@@ -4,9 +4,11 @@ var pg = require('pg'),
 
     persistentClient,
 
-    moduleMap = {};
+    moduleMap = {},
 
-pg.connect('postgres://anardi:password@localhost', function(err, client) {
+    connectionString = process.env.DATABASE_URL || 'postgres://anardi:password@localhost';
+
+pg.connect(connectionString, function(err, client) {
 
   if (err) {
     console.log('ERROR CONNECTING TO POSTGRES', err);
