@@ -29,6 +29,14 @@ window.onload = function () {
   }
 
 
+  function getDataURLFromBlob (blob, callback) {
+    var f = new FileReader();
+    f.onload = function () {
+      callback(f.result);
+    };
+    f.readAsDataURL(blob);
+  }
+
   function errorCallback(arg) {
     console.log(arg);
   }
@@ -45,9 +53,14 @@ window.onload = function () {
       setTimeout(function () {
         console.log('exporting...');
         audioRecorder.exportWAV(function (blob) {
-          Recorder.setupDownload( blob, "myRecording.wav" );
+          console.log(blob);
+          window.blob = blob;
+          getDataURLFromBlob(blob, function (result) {
+            console.log(result);
+          });
+          // Recorder.setupDownload( blob, "myRecording.wav" );
         });
-      }, 15000);
+      }, 1000);
     }, errorCallback);
   }
 

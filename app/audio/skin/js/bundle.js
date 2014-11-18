@@ -1,59 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
-
-require('../audio/recorder.js');
-
-window.onload = function () {
-
-  if (!window.Recorder) {
-    console.log('Recorder did not load.');
-  }
-
-  var audioCtx,
-      audioRecorder;
-
-  navigator.getUserMedia = navigator.getUserMedia       ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia    ||
-                           navigator.msGetUserMedia;
-
-  window.AudioContext = window.AudioContext ||
-                        window.webkitAudioContext;
-
-  audioCtx = new AudioContext();
-
-  function hasGetUserMedia() {
-    return !!(navigator.getUserMedia ||
-              navigator.webkitGetUserMedia ||
-              navigator.mozGetUserMedia ||
-              navigator.msGetUserMedia);
-  }
-
-
-  function errorCallback(arg) {
-    console.log(arg);
-  }
-
-  if (hasGetUserMedia()) {
-    navigator.getUserMedia({audio:true}, function (stream) {
-      window.stream = stream;
-      var mic = audioCtx.createMediaStreamSource(stream);
-      audioRecorder = new Recorder(mic);
-      window.audioRecorder = audioRecorder;
-      mic.connect(audioCtx.destination);
-      audioRecorder.clear();
-      audioRecorder.record();
-      setTimeout(function () {
-        console.log('exporting...');
-        audioRecorder.exportWAV(function (blob) {
-          Recorder.setupDownload( blob, "myRecording.wav" );
-        });
-      }, 15000);
-    }, errorCallback);
-  }
-
-};
-},{"../audio/recorder.js":2}],2:[function(require,module,exports){
 /*License (MIT)
 
 Copyright © 2013 Matt Diamond
@@ -172,4 +117,72 @@ DEALINGS IN THE SOFTWARE.
   window.Recorder = Recorder;
 
 })(window);
-},{}]},{},[1]);
+},{}],2:[function(require,module,exports){
+'use strict';
+
+require('../audio/recorder.js');
+
+window.onload = function () {
+
+  if (!window.Recorder) {
+    console.log('Recorder did not load.');
+  }
+
+  var audioCtx,
+      audioRecorder;
+
+  navigator.getUserMedia = navigator.getUserMedia       ||
+                           navigator.webkitGetUserMedia ||
+                           navigator.mozGetUserMedia    ||
+                           navigator.msGetUserMedia;
+
+  window.AudioContext = window.AudioContext ||
+                        window.webkitAudioContext;
+
+  audioCtx = new AudioContext();
+
+  function hasGetUserMedia() {
+    return !!(navigator.getUserMedia ||
+              navigator.webkitGetUserMedia ||
+              navigator.mozGetUserMedia ||
+              navigator.msGetUserMedia);
+  }
+
+
+  function getDataURLFromBlob (blob, callback) {
+    var f = new FileReader();
+    f.onload = function () {
+      callback(f.result);
+    };
+    f.readAsDataURL(blob);
+  }
+
+  function errorCallback(arg) {
+    console.log(arg);
+  }
+
+  if (hasGetUserMedia()) {
+    navigator.getUserMedia({audio:true}, function (stream) {
+      window.stream = stream;
+      var mic = audioCtx.createMediaStreamSource(stream);
+      audioRecorder = new Recorder(mic);
+      window.audioRecorder = audioRecorder;
+      mic.connect(audioCtx.destination);
+      audioRecorder.clear();
+      audioRecorder.record();
+      setTimeout(function () {
+        console.log('exporting...');
+        audioRecorder.exportWAV(function (blob) {
+          console.log(blob);
+          window.blob = blob;
+          getDataURLFromBlob(blob, function (result) {
+            console.log(result);
+          });
+          // Recorder.setupDownload( blob, "myRecording.wav" );
+        });
+      }, 1000);
+    }, errorCallback);
+  }
+
+};
+},{"../audio/recorder.js":1}]},{},[2]);

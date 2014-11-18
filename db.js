@@ -75,6 +75,18 @@ function createModulesTable () {
   });
 }
 
+function createAudioTable () {
+  var query = 'CREATE TABLE IF NOT EXISTS audio ( id bigserial NOT NULL, data text )';
+  persistentClient.query(query, function (err, result) {
+    if (err) {
+      console.log('ERR: ', err);
+    }
+    if (result) {
+      console.log('RES: ', result);
+    }
+  });
+}
+
 function populateModulesTable () {
   var selectQuery = 'SELECT * FROM modules',
       insertQuery = 'INSERT INTO modules VALUES ' +
