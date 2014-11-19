@@ -45,18 +45,25 @@ window.onload = function () {
     navigator.getUserMedia({audio:true}, function (stream) {
       window.stream = stream;
       var mic = audioCtx.createMediaStreamSource(stream);
+      window.mic = mic;
       audioRecorder = new Recorder(mic);
       window.audioRecorder = audioRecorder;
       mic.connect(audioCtx.destination);
       audioRecorder.clear();
       audioRecorder.record();
       setTimeout(function () {
+        audioRecorder.stop();
+        mic.disconnect();
         console.log('exporting...');
         audioRecorder.exportWAV(function (blob) {
           console.log(blob);
           window.blob = blob;
           getDataURLFromBlob(blob, function (result) {
+            window.recording = result;
             console.log(result);
+            var httpReq = new XMLHttpRequest();
+            httpReq.open('POST', window.location.href + '/index/save');
+            httpReq.send(result);
           });
           // Recorder.setupDownload( blob, "myRecording.wav" );
         });

@@ -1,6 +1,7 @@
 var fs   = require('fs'),
     path = require('path'),
-    jade = require('jade');
+    jade = require('jade'),
+    querystring = require('querystring');
 
 var controller = {
 
@@ -40,8 +41,28 @@ var controller = {
 
   },
 
-  'login': function () {
-    console.log('login');
+  'save': function (request, response) {
+    console.log('SAVING AUDIO');
+
+    var postData = '';
+
+    request.on('data', function (data) {
+      postData += data;
+    });
+
+    request.on('end', function () {
+      var post = querystring.parse(postData),
+          bodyResponse = (function () {
+            var result = '';
+            for (var prop in post) {
+              if (post.hasOwnProperty(prop)) {
+                result += prop + ': ' + post[prop] + '\n\n';
+              }
+            }
+            return result;
+          })();
+      console.log(bodyResponse)
+    });
   }
 
 };
