@@ -76,7 +76,7 @@ function createModulesTable () {
 }
 
 function createAudioTable () {
-  var query = 'CREATE TABLE IF NOT EXISTS audio ( id bigserial NOT NULL, data text )';
+  var query = 'CREATE TABLE IF NOT EXISTS audio ( id bigserial NOT NULL, audio_data text, text_data text )';
   persistentClient.query(query, function (err, result) {
     if (err) {
       console.log('ERR: ', err);
@@ -148,6 +148,7 @@ function setModuleMap (result) {
 function createTables () {
   createLogTable();
   createModulesTable();
+  createAudioTable();
 }
 
 module.exports = {
